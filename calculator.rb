@@ -1,9 +1,9 @@
 class Calculator
-  def initialize(calculate_sum: Sum.new, calculate_subtraction: Subtraction.new, calculate_multiplication: Multiplication.new, calculate_division: Division.new)
-    @calculate_sum = calculate_sum
-    @calculate_subtraction = calculate_subtraction
-    @calculate_multiplication = calculate_multiplication
-    @calculate_division = calculate_division
+  def initialize(overrides = {})
+    @calculate_sum = overrides.fetch(:calculate_sum) { Sum.new }
+    @calculate_subtraction = overrides.fetch(:calculate_subtraction) { Subtraction.new }
+    @calculate_multiplication = overrides.fetch(:calculate_multiplication) { Multiplication.new }
+    @calculate_division = overrides.fetch(:calculate_division) { Division.new }
   end
 
   def sum(number_1, number_2)
